@@ -1,13 +1,16 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   
   root 'emails#index' 
-  #get '/emails/send', to: 'emails#show'
 
   resources :emails, :only => :index do
     collection do
-      get :send_email
+      get :send_confirmation
     end  
   end
+
+  mount Sidekiq::Web => '/sidekiq'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
