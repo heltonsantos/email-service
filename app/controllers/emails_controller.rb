@@ -6,6 +6,6 @@ class EmailsController < ApplicationController
 	def send_confirmation
 		SendEmailWorker.perform_async
 		redirect_to emails_path
-	end	
+	end
 
 end

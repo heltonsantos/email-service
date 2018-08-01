@@ -1,12 +1,12 @@
 require "rails_helper"
 
-RSpec.describe Report, type: :mailer do
+RSpec.describe ReportMailer, type: :mailer do
   describe "confirmation" do
-    let(:mail) { Report.confirmation }
+    let(:mail) { ReportMailer.confirmation }
 
     it "renders the headers" do
-      expect(mail.subject).to eq("Confirmation")
-      expect(mail.to).to eq(["to@example.org"])
+      expect(mail.subject).to eq("Confirmação de envio")
+      expect(mail.to).to eq(["helton.santos@skyhub.com.br"])
       expect(mail.from).to eq(["from@example.com"])
     end
 
