@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :reports do
         collection do
-          post :upload_file
+          post :upload_report
         end  
       end  
     end

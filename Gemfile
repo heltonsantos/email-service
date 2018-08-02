@@ -33,6 +33,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'mongoid'
 gem 'bson_ext'
 
+gem 'redis'
+gem 'redis-namespace'
+gem 'redis-rails'
+gem 'redis-rack-cache'
+
 gem 'sidekiq'
 gem 'sidekiq-status'
 

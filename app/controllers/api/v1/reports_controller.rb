@@ -3,6 +3,19 @@ class Api::V1::ReportsController < ApplicationController
 
   protect_from_forgery with: :null_session
 
+
+    def upload_report
+    uploaded_io = params[:file]
+    File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
+      file.write(uploaded_io.read)
+    end
+    redirect_to emails_path 
+  end
+
+
+
+  # Default code
+
   # GET /reports
   # GET /reports.json
   def index
@@ -45,14 +58,6 @@ class Api::V1::ReportsController < ApplicationController
   # DELETE /reports/1.json
   def destroy
     @report.destroy
-  end
-
-  def upload_file
-    uploaded_io = params[:file]
-    File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
-      file.write(uploaded_io.read)
-    end
-    redirect_to emails_path 
   end
 
   private
