@@ -5,11 +5,12 @@ class Api::V1::ReportsController < ApplicationController
 
 
     def upload_report
-    uploaded_io = params[:file]
-    File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
-      file.write(uploaded_io.read)
+      uploaded_io = params[:file]
+      File.open(Rails.root.join('public', 'uploads', 'uploaded_io.original_filename.csv'), 'wb') do |file|
+      file.write(uploaded_io)
     end
-    redirect_to emails_path 
+    #redirect_to emails_path
+    head :ok 
   end
 
 
