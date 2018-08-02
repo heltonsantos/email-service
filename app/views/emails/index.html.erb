@@ -3,7 +3,7 @@
 <p><%= link_to 'Enviar Email', send_confirmation_emails_path,
 class: "btn btn-outline-info" %></p>
 
-<%= form_for :file, url: upload_file_emails_path, method: :post do |f| %>
+<%= form_for :file, url: send_report_emails_path, method: :post do |f| %>
   <%= f.file_field :content %>
-  <%= f.submit 'Enviar' %>
+  <%= f.submit 'Enviar Email' %>
 <% end %>

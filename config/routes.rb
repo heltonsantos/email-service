@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :emails, :only => :index do
     collection do
       get :send_confirmation
-      post :upload_file
+      post :send_report
     end  
   end
 

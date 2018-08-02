@@ -3,7 +3,7 @@ class SendEmailWorker
   include Sidekiq::Status::Worker
  	sidekiq_options retry: false
 
-  def perform(*args)
+  def perform()
     ReportMailer.confirmation.deliver_now!
   end
 end

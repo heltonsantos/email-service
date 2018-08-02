@@ -3,16 +3,17 @@ class Api::V1::ReportsController < ApplicationController
 
   protect_from_forgery with: :null_session
 
-
-    def upload_report
-      uploaded_io = params[:file]
-      File.open(Rails.root.join('public', 'uploads', 'uploaded_io.original_filename.csv'), 'wb') do |file|
+  def upload_report
+    uploaded_io = params[:file]
+    file_name = "report-#{Time.now.to_i}-#{generate_token}.csv"
+    
+    File.open(Rails.root.join('public', 'uploads', file_name), 'wb') do |file|
       file.write(uploaded_io)
     end
-    #redirect_to emails_path
+
+    SendReportWorker.perform_async(file_name)
     head :ok 
   end
-
 
 
   # Default code
@@ -71,4 +72,12 @@ class Api::V1::ReportsController < ApplicationController
     def report_params
       params.require(:report).permit(:path_name)
     end
+
+
+  protected
+
+    def generate_token
+      token = SecureRandom.urlsafe_base64
+    end 
+
 end

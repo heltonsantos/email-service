@@ -5,7 +5,7 @@ RSpec.describe ReportMailer, type: :mailer do
     let(:mail) { ReportMailer.confirmation }
 
     it "renders the headers" do
-      expect(mail.subject).to eq("Confirmação de envio")
+      expect(mail.subject).to eq("Confirmation")
       expect(mail.to).to eq(["helton.santos@skyhub.com.br"])
       expect(mail.from).to eq(["from@example.com"])
     end
