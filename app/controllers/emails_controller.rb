@@ -3,6 +3,9 @@ class EmailsController < ApplicationController
 	def index
 	end	
 
+
+  #Methods used to test
+
 	def send_confirmation
 		SendEmailWorker.perform_async
 		redirect_to emails_path
