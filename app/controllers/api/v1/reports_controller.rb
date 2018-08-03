@@ -6,10 +6,9 @@ class Api::V1::ReportsController < ApplicationController
     uploaded_io = params[:file]
     file_name = "report-#{Time.now.to_i}-#{generate_token}.csv"
     
-    File.open(Rails.root.join('public', 'uploads', file_name), 'wb') do |file|
+    File.open(Rails.root.join("public", "uploads/#{Rails.env}", file_name), 'wb') do |file|
       file.write(uploaded_io)
     end
-
     SendReportWorker.perform_async(file_name)
     head :ok 
   end
